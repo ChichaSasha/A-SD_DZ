@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+    string word;
+    vector <int> D(256), U;
+    int n;
+    for (int i = 0; i < D.size(); i++) D[i] = 0;
+
+    cin >> word; // ввод заданного слова;
+    for (int i = 0; i < word.size(); i++)
+    {
+        D[word[i]+127]++;
+    }
+
+    cin >> n; // ввод количества слов в словаре;
+
+    int rez = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> word; // ввод слов со словаря;
+
+        U = D;
+
+        bool words = true;
+        for (int j = 0; j < word.size(); j++)
+        {
+            U[word[j]+127]--;
+            if (U[word[j]+127] < 0)
+            {
+                words = false;
+                break;
+            }
+        }
+
+        rez += words;
+    }
+    cout << rez << endl; // вывод количества слов, которые можно составить из заданного слова;
+    return 0;
+}
