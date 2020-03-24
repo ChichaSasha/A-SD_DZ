@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int the_first_dict_of_endi(){
+    set<string>::iterator in_iter;
+  string slovo;
+  set<string> data_value;
+  while (cin >> slovo){
+    string myslovo = "";
+    for (int next_elem = 0; next_elem<slovo.size(); next_elem++){
+      char ryadok_of_string = tolower(slovo[next_elem]);
+      if (ryadok_of_string >= 97 && ryadok_of_string <= 122)
+        myslovo += ryadok_of_string;
+      else if (myslovo != ""){
+        data_value.insert(myslovo);
+        myslovo = "";}}
+    if (myslovo != "")
+      data_value.insert(myslovo);}
+  for (in_iter = data_value.begin(); in_iter != data_value.end(); in_iter++){cout << *in_iter << endl;}}
+
+int main(){
+    the_first_dict_of_endi();}

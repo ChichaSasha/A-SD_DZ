@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int combination_slov_list(){
+    string slovo;
+  vector <int> massiv(256);
+  vector <int> massiv_last;
+  int number;
+  for (int index = 0; index < massiv.size(); index++) massiv[index] = 0;
+  cin >> slovo;
+  for (int index = 0; index < slovo.size(); index++){massiv[slovo[index] + 127]++;}
+  cin >> number;
+  int result = 0;
+  for (int index = 0; index < number; index++){
+    cin >> slovo;
+    massiv_last = massiv;
+    bool bool_slovo = true;
+    for (int indexj = 0; indexj <slovo.size(); indexj++){
+      massiv_last[slovo[indexj] + 127]--;
+      if (massiv_last[slovo[indexj] + 127] < 0){
+        bool_slovo = false;
+        break;}}
+    result += bool_slovo;}
+  cout << result << endl;}
+
+int main() {combination_slov_list();}

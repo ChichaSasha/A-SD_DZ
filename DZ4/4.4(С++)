@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int v, d, n;
+double time1;
+
+vector <int> x, t, dx;
+
+bool can(double cur) {
+    for (int i = 1; i <= n; i++) {
+        cur += (double) dx[i] / v;
+        if (cur < t[i])
+            return false;
+        cur += d;
+    }
+    time1 = cur + (double) x[n] / v;
+    return true;
+}
+
+
+int main() {
+    cin >> v >> d >> n;
+    x.resize(n + 1, 0);
+    dx.resize(n + 1, 0);
+    t.resize(n + 1, 0);
+    for (int i = 1; i <= n; i++) {
+        cin >> x[i];
+        dx[i] = x[i] - x[i - 1];
+        int h, m;
+        scanf("%d:%d", &h, &m);
+        t[i] = h * 60 + m;
+    }
+    double l = 0;
+    double r = t[n];
+    while (l < r - 0.1) {
+        double m = (l + r) / 2;
+        if (!can(m))
+            l = m;
+        else
+            r = m;
+    }
+    can(r);
+    int ans = (int)trunc(time1 + 0.9) % 1440;
+    printf("%02d:%02d", ans / 60, ans % 60);
+    return 0;
+}
